@@ -2,8 +2,8 @@ rise_up = "";
 darkside = "";
 
 function preload(){
-    rise_up = loadImage("rise_up.mp3");
-    darkside = loadImage("darkside.mp3");
+    rise_up = loadSound("rise_up.mp3");
+    darkside = loadSound("darkside.mp3");
 }
 
 function setup(){
@@ -12,6 +12,13 @@ function setup(){
 
     video = createCapture(VIDEO);
     video.hide();
+
+    PoseNet  = ml5.poseNet(video,modelLoaded);
+    PoseNet.on('pose',gotPoses);
+}
+
+function modelLoaded(){
+    console.log("PoseNet Is Intialized!");
 }
 
 function draw(){
